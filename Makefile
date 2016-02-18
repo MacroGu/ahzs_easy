@@ -1,16 +1,21 @@
-CXX=g++
+CXX=g++ -std=c++11
 
 BIN_PATH = /usr/local/bin
 
-INCLUDE_PATH = /usr/local/include
+INCLUDE_PATH = -I include/ \
+			   -I include/lua \
+			   -I include/tinyxml \
+			   -I include/mysql \
+			   -I include/redis \
+			   -I include/curl
 MYSQL_INCLUDE_PATH = /usr/local/mysql/include
 MYSQL_PLUS_PLUS_INCLUDE_PATH = /usr/include/mysql++
 TINYXML_INCLUDE_PATH = /usr/local/src/tinyxml
 
-TINYXML_LIB_PATH = /usr/lib
-LIB_PATH = /usr/lib
-MYSQL_LIB_PATH = /usr/local/mysql/lib
-LOCAL_LIB_PATH = /usr/local/lib
+TINYXML_LIB_PATH = thirdpard
+LIB_PATH = thirdpard
+MYSQL_LIB_PATH = thirdpard
+LOCAL_LIB_PATH = thirdpard
 
 CFLAGS=-W -I$(INCLUDE_PATH) -I$(MYSQL_PLUS_PLUS_INCLUDE_PATH) -I$(MYSQL_INCLUDE_PATH) -I$(BIN_PATH) -I$(TINYXML_INCLUDE_PATH) \
 		 -Icommon -Ibase -Icell -Itest -Icwmd -Ilogin -Idbmgr -Itimerd -c -g -std=c++0x -DSYNC_DB_TEST -D__LUA_5_2_1 -D_USE_REDIS -D__AOI_PRUNING \
@@ -26,7 +31,7 @@ CFLAGS=-W -I$(INCLUDE_PATH) -I$(MYSQL_PLUS_PLUS_INCLUDE_PATH) -I$(MYSQL_INCLUDE_
 #-Icommon -Ibase -Icell -Itest -Icwmd -Ilogin -Idbmgr -Itimerd -c -g -DSYNC_DB_TEST -D_USE_RECV_BUFF 
 #		 -Icommon -Ibase -Icell -Itest -Icwmd -Ilogin -Idbmgr -Itimerd -c -g -DSYNC_DB_TEST -D_GC_DEBUG
 LFLAGS=-L$(LIB_PATH) -L$(MYSQL_LIB_PATH) -L$(LOCAL_LIB_PATH) -L$(TINYXML_LIB_PATH) \
-		 -ltinyxml -ldl -lm  -g -lpthread -lmysqlclient -luuid -lhiredis -lcurl -lboost_regex -Wl,-E
+		 -ltinyxml -ldl -lm  -g -lpthread -lmysqlclient -luuid -lhiredis -lcurl -Wl,-E
 		#-llua -ltinyxml -ldl -lm  -g -pg -lpthread -lmysqlclient -luuid -lhiredis -lcurl -Wl,-E
 LUALIB=$(LOCAL_LIB_PATH)/liblua.a $(TINYXML_LIB_PATH)/libtinyxml.a $(LOCAL_LIB_PATH)/libssl.a $(LOCAL_LIB_PATH)/libcrypto.a \
        #$(LOCAL_LIB_PATH)/libmsgpack.a
