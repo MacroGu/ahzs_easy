@@ -1,0 +1,10 @@
+# .gitignore file
+# 一些编译产生的 可执行文件，目标链接文件，等等 不会被添加到 git 管理
+# win 相关的东西 不需要添加进入
+
+tags
+/mogo/*
+/sdk/*
+*.o
+/test/*
+/bin/*
